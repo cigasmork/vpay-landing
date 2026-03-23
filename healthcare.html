@@ -32,9 +32,9 @@ nav {
 .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
 .nav-links a { color: rgba(255,255,255,0.76); text-decoration: none; font-size: 14px; transition: color 0.2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--accent-light); }
+.nav-links .nav-cta { background: var(--accent); color: var(--navy) !important; padding: 8px 22px; font-weight: 700; transition: background 0.2s; }
+.nav-links .nav-cta:hover { background: var(--accent-light) !important; color: var(--navy) !important; }
 .nav-right { display: flex; align-items: center; gap: 12px; }
-.nav-cta { background: var(--accent); color: var(--navy) !important; padding: 8px 22px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
-.nav-cta:hover { background: var(--accent-light) !important; }
 .lang-toggle { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.75); padding: 6px 14px; font-size: 12px; font-family: 'DM Mono', monospace; letter-spacing: 0.1em; cursor: pointer; transition: all 0.2s; }
 .lang-toggle:hover { border-color: var(--accent-light); color: var(--accent-light); }
 .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
@@ -151,10 +151,10 @@ footer { background: #070F1F; padding: 40px 0; }
   <ul class="nav-links">
     <li><a href="index.html" data-i18n="nav-fintech">핀테크</a></li>
     <li><a href="#" class="active" data-i18n="nav-healthcare">헬스케어</a></li>
+    <li><a href="#contact" class="nav-cta" data-i18n="nav-contact">문의하기</a></li>
   </ul>
   <div class="nav-right">
     <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
-    <a href="#contact" class="nav-cta" data-i18n="nav-contact">문의하기</a>
     <button class="hamburger" id="hamburger" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
   </div>
 </nav>

@@ -8,23 +8,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Cormorant+Garamond:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --navy: #0D1F3E;
-  --navy-mid: #162B52;
-  --navy-light: #1E3A6B;
-  --accent: #C8960C;
-  --accent-light: #E8B84B;
-  --teal: #0A7E6E;
-  --teal-light: #12A896;
-  --white: #FFFFFF;
-  --off: #F5F7FA;
-  --gray: #8899AA;
-  --light-gray: #E8EDF3;
-  --text: #1A2744;
-  --text-muted: #5A6A7E;
+  --navy: #0D1F3E; --navy-mid: #162B52; --navy-light: #1E3A6B;
+  --accent: #C8960C; --accent-light: #E8B84B;
+  --teal: #0A7E6E; --teal-light: #12A896;
+  --white: #FFFFFF; --off: #F5F7FA; --gray: #8899AA;
+  --light-gray: #E8EDF3; --text: #1A2744; --text-muted: #5A6A7E;
 }
-* , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: 'Noto Sans KR', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
@@ -33,116 +26,76 @@ nav {
   border-bottom: 1px solid rgba(200,150,12,0.2);
 }
 .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.logo-mark {
-  width: 40px; height: 40px; background: var(--accent); color: var(--navy);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700;
-}
+.logo-mark { width: 40px; height: 40px; background: var(--accent); color: var(--navy); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; }
 .logo-text { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--white); }
 .logo-text span { color: var(--accent-light); }
-.nav-links { display: flex; gap: 32px; list-style: none; }
-.nav-links a {
-  color: rgba(255,255,255,0.76); text-decoration: none; font-size: 14px;
-  transition: color 0.2s;
-}
+.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+.nav-links a { color: rgba(255,255,255,0.76); text-decoration: none; font-size: 14px; transition: color 0.2s; }
 .nav-links a:hover, .nav-links a.active { color: var(--accent-light); }
-.nav-cta {
-  background: var(--accent); color: var(--navy) !important; padding: 8px 22px;
-  font-weight: 700; text-decoration: none;
-}
-.hero {
-  min-height: 100vh; padding-top: 72px; position: relative; overflow: hidden;
-  background: radial-gradient(circle at top right, rgba(18,168,150,0.18), transparent 28%),
-              linear-gradient(135deg, #0D1F3E 0%, #162B52 48%, #0B2B3B 100%);
-}
-.hero::before {
-  content: ''; position: absolute; inset: 0;
-  background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-  background-size: 56px 56px; opacity: 0.35;
-}
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.nav-cta { background: var(--accent); color: var(--navy) !important; padding: 8px 22px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+.nav-cta:hover { background: var(--accent-light) !important; }
+.lang-toggle { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.75); padding: 6px 14px; font-size: 12px; font-family: 'DM Mono', monospace; letter-spacing: 0.1em; cursor: pointer; transition: all 0.2s; }
+.lang-toggle:hover { border-color: var(--accent-light); color: var(--accent-light); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+.hamburger span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,0.8); transition: all 0.3s; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+.mobile-menu { display: none; position: fixed; top: 72px; left: 0; right: 0; background: rgba(7,15,31,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(200,150,12,0.2); padding: 24px; z-index: 99; flex-direction: column; gap: 4px; }
+.mobile-menu.open { display: flex; }
+.mobile-menu a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 15px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); transition: color 0.2s; }
+.mobile-menu a:hover { color: var(--accent-light); }
+.mobile-menu a.nav-cta-mobile { margin-top: 12px; background: var(--accent); color: var(--navy) !important; padding: 12px 24px; text-align: center; font-weight: 700; border: none; }
+.mobile-lang { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.75); padding: 10px 16px; font-size: 13px; font-family: 'DM Mono', monospace; cursor: pointer; text-align: left; }
+
+.hero { min-height: 100vh; padding-top: 72px; position: relative; overflow: hidden; background: radial-gradient(circle at top right, rgba(18,168,150,0.18), transparent 28%), linear-gradient(135deg, #0D1F3E 0%, #162B52 48%, #0B2B3B 100%); }
+.hero::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px); background-size: 56px 56px; opacity: 0.35; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
-.hero-content {
-  position: relative; z-index: 1; min-height: calc(100vh - 72px);
-  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center;
-}
-.eyebrow {
-  display: inline-flex; align-items: center; gap: 8px; margin-bottom: 24px;
-  color: var(--accent-light); font-family: 'DM Mono', monospace; font-size: 12px;
-  letter-spacing: 0.08em; text-transform: uppercase;
-}
+.hero-content { position: relative; z-index: 1; min-height: calc(100vh - 72px); display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 24px; color: var(--accent-light); font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
 .eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
-.hero h1 {
-  font-family: 'Cormorant Garamond', serif; font-size: 64px; line-height: 1.04;
-  color: var(--white); margin-bottom: 22px;
-}
+.hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 64px; line-height: 1.04; color: var(--white); margin-bottom: 22px; }
 .hero h1 span { color: #7AE2D5; }
-.hero p {
-  font-size: 18px; line-height: 1.8; color: rgba(255,255,255,0.72);
-  max-width: 640px; margin-bottom: 36px;
-}
+.hero p { font-size: 18px; line-height: 1.8; color: rgba(255,255,255,0.72); max-width: 640px; margin-bottom: 36px; }
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-.btn-primary, .btn-secondary {
-  display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
-  padding: 14px 28px; font-size: 15px; transition: all 0.2s;
-}
+.btn-primary, .btn-secondary { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; padding: 14px 28px; font-size: 15px; transition: all 0.2s; }
 .btn-primary { background: var(--accent); color: var(--navy); font-weight: 700; }
 .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); }
 .btn-secondary { border: 1px solid rgba(255,255,255,0.25); color: var(--white); }
 .btn-secondary:hover { background: rgba(255,255,255,0.06); }
-.hero-panel {
-  position: relative; z-index: 1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-  padding: 32px; backdrop-filter: blur(10px);
-}
-.hero-panel::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--teal-light));
-}
+.hero-panel { position: relative; z-index: 1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 32px; backdrop-filter: blur(10px); }
+.hero-panel::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--teal-light)); }
 .panel-title { font-size: 12px; color: rgba(255,255,255,0.55); letter-spacing: 0.12em; font-family: 'DM Mono', monospace; margin-bottom: 18px; }
-.score-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.score-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; }
 .score-card { background: rgba(255,255,255,0.04); padding: 18px; border: 1px solid rgba(255,255,255,0.08); }
 .score-card strong { display: block; font-size: 24px; color: var(--accent-light); margin-bottom: 6px; font-family: 'Cormorant Garamond', serif; }
 .score-card span { font-size: 13px; color: rgba(255,255,255,0.64); line-height: 1.6; }
+
 section { padding: 100px 0; }
-.section-tag {
-  display: block; margin-bottom: 14px; color: var(--accent); font-family: 'DM Mono', monospace;
-  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-}
-.section-title {
-  font-family: 'Cormorant Garamond', serif; font-size: 46px; color: var(--navy);
-  line-height: 1.12; margin-bottom: 16px;
-}
+.section-tag { display: block; margin-bottom: 14px; color: var(--accent); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: 46px; color: var(--navy); line-height: 1.12; margin-bottom: 16px; }
 .section-sub { font-size: 16px; line-height: 1.8; color: var(--text-muted); max-width: 720px; }
 .split-section { background: var(--off); }
-.feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 56px; }
-.feature-card {
-  background: var(--white); border: 1px solid var(--light-gray); padding: 30px 26px; position: relative;
-  transition: all 0.25s ease;
-}
-.feature-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, rgba(200,150,12,0.25), rgba(18,168,150,0.25));
-  transition: background 0.25s;
-}
+
+.feature-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; margin-top: 56px; }
+.feature-card { background: var(--white); border: 1px solid var(--light-gray); padding: 30px 26px; position: relative; transition: all 0.25s ease; }
+.feature-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg,rgba(200,150,12,0.25),rgba(18,168,150,0.25)); transition: background 0.25s; }
 .feature-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(13,31,62,0.1); border-color: var(--accent); }
 .feature-card:hover::before { background: linear-gradient(90deg, var(--accent), var(--teal-light)); }
 .feature-icon { font-size: 30px; display: block; margin-bottom: 14px; }
 .feature-card h3 { font-size: 18px; color: var(--navy); margin-bottom: 10px; }
 .feature-card p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
-.timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
-.timeline-step {
-  padding: 28px; border: 1px solid var(--light-gray); background: var(--white);
-  transition: all 0.25s ease; position: relative; overflow: hidden;
-}
-.timeline-step::after {
-  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--teal), var(--teal-light));
-  transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
-}
+
+.timeline { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 56px; }
+.timeline-step { padding: 28px; border: 1px solid var(--light-gray); background: var(--white); transition: all 0.25s ease; position: relative; overflow: hidden; }
+.timeline-step::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--teal), var(--teal-light)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
 .timeline-step:hover { border-color: var(--teal); box-shadow: 0 8px 24px rgba(10,126,110,0.08); }
 .timeline-step:hover::after { transform: scaleX(1); }
 .timeline-step strong { display: block; font-family: 'DM Mono', monospace; font-size: 12px; color: var(--teal); letter-spacing: 0.08em; margin-bottom: 10px; }
 .timeline-step h4 { font-size: 22px; color: var(--navy); margin-bottom: 10px; font-family: 'Cormorant Garamond', serif; }
 .timeline-step p { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+
 .platform-section { background: linear-gradient(180deg, #FFFFFF 0%, #F7FAFD 100%); }
 .platform-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 32px; margin-top: 56px; align-items: stretch; }
 .platform-panel { background: var(--navy); color: var(--white); padding: 36px; }
@@ -152,39 +105,32 @@ section { padding: 100px 0; }
 .platform-list li { border: 1px solid var(--light-gray); background: var(--white); padding: 22px 24px; }
 .platform-list strong { display: block; color: var(--navy); margin-bottom: 6px; }
 .platform-list span { color: var(--text-muted); font-size: 14px; line-height: 1.7; }
-.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 56px; }
-.why-card {
-  padding: 30px; background: var(--white); border: 1px solid var(--light-gray);
-  transition: all 0.25s ease; position: relative;
-}
-.why-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--teal-light));
-  opacity: 0; transition: opacity 0.25s;
-}
+
+.why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; margin-top: 56px; }
+.why-card { padding: 30px; background: var(--white); border: 1px solid var(--light-gray); transition: all 0.25s ease; position: relative; }
+.why-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--teal-light)); opacity: 0; transition: opacity 0.25s; }
 .why-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(13,31,62,0.08); border-color: var(--accent); }
 .why-card:hover::before { opacity: 1; }
 .why-card h4 { font-size: 22px; font-family: 'Cormorant Garamond', serif; color: var(--navy); margin-bottom: 12px; }
 .why-card p { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
-.cta-section {
-  background: var(--navy); text-align: center; position: relative; overflow: hidden;
-}
-.cta-section::before {
-  content: ''; position: absolute; inset: 0;
-  background-image: linear-gradient(rgba(200,150,12,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(200,150,12,0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
+
+.cta-section { background: var(--navy); text-align: center; position: relative; overflow: hidden; }
+.cta-section::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(200,150,12,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(200,150,12,0.05) 1px,transparent 1px); background-size: 40px 40px; }
 .cta-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
 .cta-inner .section-tag { display: block; text-align: center; }
 .cta-inner h2 { font-family: 'Cormorant Garamond', serif; font-size: 52px; color: var(--white); margin-bottom: 18px; line-height: 1.15; }
 .cta-inner p { margin: 0 0 30px; color: rgba(255,255,255,0.68); line-height: 1.8; }
+
 footer { background: #070F1F; padding: 40px 0; }
-.footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px; display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+.footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 .footer-inner p, .footer-inner a { color: rgba(255,255,255,0.4); font-size: 13px; text-decoration: none; }
 .footer-inner a:hover { color: rgba(255,255,255,0.7); }
+
 @media (max-width: 768px) {
   nav { padding: 0 24px; }
   .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .lang-toggle { display: none; }
   .container, .footer-inner { padding: 0 24px; }
   .hero-content, .platform-grid { grid-template-columns: 1fr; }
   .hero h1 { font-size: 42px; }
@@ -196,114 +142,246 @@ footer { background: #070F1F; padding: 40px 0; }
 </style>
 </head>
 <body>
+
 <nav>
   <a href="index.html" class="nav-logo">
     <div class="logo-mark">V</div>
     <span class="logo-text">V <span>Pay</span></span>
   </a>
   <ul class="nav-links">
-    <li><a href="#overview">사업 개요</a></li>
-    <li><a href="#pipeline">사업 모델</a></li>
-    <li><a href="#platform">플랫폼</a></li>
-    <li><a href="#why">성장 포인트</a></li>
-    <li><a href="index.html">핀테크 메인</a></li>
+    <li><a href="index.html" data-i18n="nav-fintech">핀테크</a></li>
+    <li><a href="#" class="active" data-i18n="nav-healthcare">헬스케어</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">문의하기</a>
+  <div class="nav-right">
+    <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
+    <a href="#contact" class="nav-cta" data-i18n="nav-contact">문의하기</a>
+    <button class="hamburger" id="hamburger" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
+  </div>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" data-i18n="nav-fintech">핀테크</a>
+  <a href="#" data-i18n="nav-healthcare">헬스케어</a>
+  <button class="mobile-lang" onclick="toggleLang()" id="mobileLangBtn">🌐 English</button>
+  <a href="#contact" class="nav-cta-mobile" data-i18n="nav-contact">문의하기</a>
+</div>
+
 <section class="hero" id="overview">
   <div class="container hero-content">
     <div>
-      <span class="eyebrow">Precision Healthcare Venture</span>
-      <h1>SNP 기반 <span>개인 맞춤형 영양제</span><br>제조 플랫폼</h1>
-      <p>V Pay Healthcare는 SNP(단일 염기 다형성) 분석을 출발점으로 개인의 유전적 특성과 생활 데이터를 통합 해석하고, 맞춤형 영양제 설계와 제조까지 연결하는 정밀 헬스케어 플랫폼을 준비하고 있습니다.</p>
+      <span class="eyebrow" data-i18n="hero-eyebrow">Precision Healthcare Venture</span>
+      <h1 data-i18n="hero-title">SNP 기반 <span>개인 맞춤형 영양제</span><br>제조 플랫폼</h1>
+      <p data-i18n="hero-desc">V Pay Healthcare는 SNP(단일 염기 다형성) 분석을 출발점으로 개인의 유전적 특성과 생활 데이터를 통합 해석하고, 맞춤형 영양제 설계와 제조까지 연결하는 정밀 헬스케어 플랫폼을 준비하고 있습니다.</p>
       <div class="hero-actions">
-        <a href="#pipeline" class="btn-primary">사업 모델 보기 →</a>
-        <a href="index.html" class="btn-secondary">핀테크 메인으로 돌아가기</a>
+        <a href="#pipeline" class="btn-primary" data-i18n="hero-btn1">사업 모델 보기 →</a>
+        <a href="index.html" class="btn-secondary" data-i18n="hero-btn2">핀테크 메인으로 돌아가기</a>
       </div>
     </div>
     <div class="hero-panel">
-      <div class="panel-title">PLATFORM FLOW</div>
+      <div class="panel-title" data-i18n="panel-title">PLATFORM FLOW</div>
       <div class="score-grid">
-        <div class="score-card"><strong>01</strong><span>유전자 데이터 수집 및 SNP 프로파일링</span></div>
-        <div class="score-card"><strong>02</strong><span>라이프스타일·문진 데이터 결합 분석</span></div>
-        <div class="score-card"><strong>03</strong><span>개인 맞춤 영양 포뮬러 설계</span></div>
-        <div class="score-card"><strong>04</strong><span>제조·패키징·정기 공급 운영</span></div>
+        <div class="score-card"><strong data-i18n="flow1-num">01</strong><span data-i18n="flow1-desc">유전자 데이터 수집 및 SNP 프로파일링</span></div>
+        <div class="score-card"><strong data-i18n="flow2-num">02</strong><span data-i18n="flow2-desc">라이프스타일·문진 데이터 결합 분석</span></div>
+        <div class="score-card"><strong data-i18n="flow3-num">03</strong><span data-i18n="flow3-desc">개인 맞춤 영양 포뮬러 설계</span></div>
+        <div class="score-card"><strong data-i18n="flow4-num">04</strong><span data-i18n="flow4-desc">제조·패키징·정기 공급 운영</span></div>
       </div>
     </div>
   </div>
 </section>
+
 <section class="split-section" id="pipeline">
   <div class="container">
-    <span class="section-tag">BUSINESS MODEL</span>
-    <h2 class="section-title">데이터 해석부터 제조까지 하나의 흐름으로 설계합니다</h2>
-    <p class="section-sub">단순 추천이 아니라 개인 데이터를 실제 제품 설계와 공급 체계로 연결하는 구조가 핵심입니다. 사업 모델을 분석, 설계, 제조, 반복 관리의 4단계로 분리해 설명합니다.</p>
+    <span class="section-tag" data-i18n="biz-tag">BUSINESS MODEL</span>
+    <h2 class="section-title" data-i18n="biz-title">데이터 해석부터 제조까지 하나의 흐름으로 설계합니다</h2>
+    <p class="section-sub" data-i18n="biz-sub">단순 추천이 아니라 개인 데이터를 실제 제품 설계와 공급 체계로 연결하는 구조가 핵심입니다. 사업 모델을 분석, 설계, 제조, 반복 관리의 4단계로 분리해 설명합니다.</p>
     <div class="feature-grid">
-      <article class="feature-card"><span class="feature-icon">🧬</span><h3>SNP 유전자 분석</h3><p>영양소 대사 특성, 흡수 경향, 특정 건강 리스크와 연관될 수 있는 유전적 신호를 해석해 개인별 출발점을 정리합니다.</p></article>
-      <article class="feature-card"><span class="feature-icon">📊</span><h3>정밀 건강 리포트</h3><p>문진, 식습관, 수면, 활동량 등 라이프스타일 데이터를 결합해 현재 상태와 개선 우선순위를 직관적인 리포트로 제공합니다.</p></article>
-      <article class="feature-card"><span class="feature-icon">💊</span><h3>맞춤형 포뮬러 설계</h3><p>개인별 필요 성분과 함량을 설계해 복용 편의성과 지속 가능성을 고려한 맞춤형 영양 솔루션을 구성합니다.</p></article>
-      <article class="feature-card"><span class="feature-icon">🏭</span><h3>주문형 제조·공급</h3><p>설계 결과를 제조 파트너 및 운영 시스템과 연결해 생산, 포장, 배송, 정기 구독까지 이어지는 운영 모델을 만듭니다.</p></article>
+      <article class="feature-card"><span class="feature-icon">🧬</span><h3 data-i18n="feat1-title">SNP 유전자 분석</h3><p data-i18n="feat1-desc">영양소 대사 특성, 흡수 경향, 특정 건강 리스크와 연관될 수 있는 유전적 신호를 해석해 개인별 출발점을 정리합니다.</p></article>
+      <article class="feature-card"><span class="feature-icon">📊</span><h3 data-i18n="feat2-title">정밀 건강 리포트</h3><p data-i18n="feat2-desc">문진, 식습관, 수면, 활동량 등 라이프스타일 데이터를 결합해 현재 상태와 개선 우선순위를 직관적인 리포트로 제공합니다.</p></article>
+      <article class="feature-card"><span class="feature-icon">💊</span><h3 data-i18n="feat3-title">맞춤형 포뮬러 설계</h3><p data-i18n="feat3-desc">개인별 필요 성분과 함량을 설계해 복용 편의성과 지속 가능성을 고려한 맞춤형 영양 솔루션을 구성합니다.</p></article>
+      <article class="feature-card"><span class="feature-icon">🏭</span><h3 data-i18n="feat4-title">주문형 제조·공급</h3><p data-i18n="feat4-desc">설계 결과를 제조 파트너 및 운영 시스템과 연결해 생산, 포장, 배송, 정기 구독까지 이어지는 운영 모델을 만듭니다.</p></article>
     </div>
   </div>
 </section>
+
 <section id="platform">
   <div class="container">
-    <span class="section-tag">OPERATING MODEL</span>
-    <h2 class="section-title">정밀 헬스케어 플랫폼 구조</h2>
-    <p class="section-sub">플랫폼은 단발성 검사가 아니라 데이터를 지속적으로 업데이트하고 개인 맞춤 제안을 고도화하는 구조로 설계됩니다.</p>
+    <span class="section-tag" data-i18n="op-tag">OPERATING MODEL</span>
+    <h2 class="section-title" data-i18n="op-title">정밀 헬스케어 플랫폼 구조</h2>
+    <p class="section-sub" data-i18n="op-sub">플랫폼은 단발성 검사가 아니라 데이터를 지속적으로 업데이트하고 개인 맞춤 제안을 고도화하는 구조로 설계됩니다.</p>
     <div class="timeline">
-      <div class="timeline-step"><strong>STEP 01</strong><h4>진단 및 데이터 확보</h4><p>유전자 분석 키트와 디지털 문진을 통해 개인 프로필을 생성하고 이후 상담 및 추천의 기준 데이터를 확보합니다.</p></div>
-      <div class="timeline-step"><strong>STEP 02</strong><h4>해석 및 영양 설계</h4><p>분석 결과를 영양학적 관점에서 재해석해 필요한 성분 조합과 섭취 플랜을 설계합니다.</p></div>
-      <div class="timeline-step"><strong>STEP 03</strong><h4>제조 및 반복 케어</h4><p>설계안을 제조와 연결하고, 이후 복용 피드백과 생활 데이터 변화에 따라 포뮬러를 재조정합니다.</p></div>
+      <div class="timeline-step"><strong data-i18n="step1-num">STEP 01</strong><h4 data-i18n="step1-title">진단 및 데이터 확보</h4><p data-i18n="step1-desc">유전자 분석 키트와 디지털 문진을 통해 개인 프로필을 생성하고 이후 상담 및 추천의 기준 데이터를 확보합니다.</p></div>
+      <div class="timeline-step"><strong data-i18n="step2-num">STEP 02</strong><h4 data-i18n="step2-title">해석 및 영양 설계</h4><p data-i18n="step2-desc">분석 결과를 영양학적 관점에서 재해석해 필요한 성분 조합과 섭취 플랜을 설계합니다.</p></div>
+      <div class="timeline-step"><strong data-i18n="step3-num">STEP 03</strong><h4 data-i18n="step3-title">제조 및 반복 케어</h4><p data-i18n="step3-desc">설계안을 제조와 연결하고, 이후 복용 피드백과 생활 데이터 변화에 따라 포뮬러를 재조정합니다.</p></div>
     </div>
   </div>
 </section>
+
 <section class="platform-section">
   <div class="container">
-    <span class="section-tag">PLATFORM ADVANTAGE</span>
-    <h2 class="section-title">데이터·운영·제조를 연결하는 확장형 구조</h2>
-    <p class="section-sub">사업의 경쟁력은 분석 결과만 보여주는 데서 끝나지 않고, 제품화와 재구매 구조까지 끌고 갈 수 있는 운영 체계에 있습니다.</p>
+    <span class="section-tag" data-i18n="adv-tag">PLATFORM ADVANTAGE</span>
+    <h2 class="section-title" data-i18n="adv-title">데이터·운영·제조를 연결하는 확장형 구조</h2>
+    <p class="section-sub" data-i18n="adv-sub">사업의 경쟁력은 분석 결과만 보여주는 데서 끝나지 않고, 제품화와 재구매 구조까지 끌고 갈 수 있는 운영 체계에 있습니다.</p>
     <div class="platform-grid">
       <div class="platform-panel">
-        <h3>Healthcare Platform Thesis</h3>
-        <p>개인의 유전자 및 생활 데이터를 기반으로 한 분석 엔진, 맞춤형 포뮬러 설계 로직, 제조 및 공급 운영을 하나의 고객 여정으로 통합합니다. 이 구조는 향후 건강기능식품 외 다양한 디지털 헬스케어 서비스로도 확장될 수 있습니다.</p>
+        <h3 data-i18n="adv-panel-title">Healthcare Platform Thesis</h3>
+        <p data-i18n="adv-panel-desc">개인의 유전자 및 생활 데이터를 기반으로 한 분석 엔진, 맞춤형 포뮬러 설계 로직, 제조 및 공급 운영을 하나의 고객 여정으로 통합합니다. 이 구조는 향후 건강기능식품 외 다양한 디지털 헬스케어 서비스로도 확장될 수 있습니다.</p>
       </div>
       <ul class="platform-list">
-        <li><strong>Personalized recommendation engine</strong><span>유전자·생활 데이터 기반으로 고객별 다른 설계 결과를 생성하는 핵심 레이어</span></li>
-        <li><strong>Manufacturing integration</strong><span>설계 결과를 실제 제조 스펙으로 변환해 생산 및 재주문 흐름과 연동</span></li>
-        <li><strong>Subscription-ready operations</strong><span>정기 복용, 리필, 설계 업데이트 등 반복 매출 구조에 적합한 운영 방식</span></li>
-        <li><strong>Future healthcare ecosystem</strong><span>영양제 외 상담, 건강 리포트, 라이프스타일 코칭 등으로 이어질 수 있는 확장성</span></li>
+        <li><strong data-i18n="adv-l1-title">Personalized recommendation engine</strong><span data-i18n="adv-l1-desc">유전자·생활 데이터 기반으로 고객별 다른 설계 결과를 생성하는 핵심 레이어</span></li>
+        <li><strong data-i18n="adv-l2-title">Manufacturing integration</strong><span data-i18n="adv-l2-desc">설계 결과를 실제 제조 스펙으로 변환해 생산 및 재주문 흐름과 연동</span></li>
+        <li><strong data-i18n="adv-l3-title">Subscription-ready operations</strong><span data-i18n="adv-l3-desc">정기 복용, 리필, 설계 업데이트 등 반복 매출 구조에 적합한 운영 방식</span></li>
+        <li><strong data-i18n="adv-l4-title">Future healthcare ecosystem</strong><span data-i18n="adv-l4-desc">영양제 외 상담, 건강 리포트, 라이프스타일 코칭 등으로 이어질 수 있는 확장성</span></li>
       </ul>
     </div>
   </div>
 </section>
+
 <section id="why">
   <div class="container">
-    <span class="section-tag">WHY NOW</span>
-    <h2 class="section-title">왜 지금 이 사업을 주목해야 할까요?</h2>
-    <p class="section-sub">개인화 소비, 데이터 기반 건강관리, 주문형 제조 트렌드가 맞물리면서 정밀 영양 시장에 대한 기대가 커지고 있습니다.</p>
+    <span class="section-tag" data-i18n="why-tag">WHY NOW</span>
+    <h2 class="section-title" data-i18n="why-title">왜 지금 이 사업을 주목해야 할까요?</h2>
+    <p class="section-sub" data-i18n="why-sub">개인화 소비, 데이터 기반 건강관리, 주문형 제조 트렌드가 맞물리면서 정밀 영양 시장에 대한 기대가 커지고 있습니다.</p>
     <div class="why-grid">
-      <div class="why-card"><h4>개인화 수요 확대</h4><p>획일적인 건강기능식품보다 개인에게 맞는 성분 조합과 섭취 방식에 대한 니즈가 빠르게 증가하고 있습니다.</p></div>
-      <div class="why-card"><h4>데이터 기반 설득력</h4><p>유전자와 생활 데이터를 함께 해석하면 추천의 근거를 더 명확하게 설명할 수 있어 고객 경험과 신뢰를 높일 수 있습니다.</p></div>
-      <div class="why-card"><h4>제조 연계형 수익화</h4><p>분석 리포트에서 끝나지 않고 실제 제품 제조와 반복 구매로 연결되기 때문에 확장 가능한 수익 모델 설계가 가능합니다.</p></div>
+      <div class="why-card"><h4 data-i18n="why1-title">개인화 수요 확대</h4><p data-i18n="why1-desc">획일적인 건강기능식품보다 개인에게 맞는 성분 조합과 섭취 방식에 대한 니즈가 빠르게 증가하고 있습니다.</p></div>
+      <div class="why-card"><h4 data-i18n="why2-title">데이터 기반 설득력</h4><p data-i18n="why2-desc">유전자와 생활 데이터를 함께 해석하면 추천의 근거를 더 명확하게 설명할 수 있어 고객 경험과 신뢰를 높일 수 있습니다.</p></div>
+      <div class="why-card"><h4 data-i18n="why3-title">제조 연계형 수익화</h4><p data-i18n="why3-desc">분석 리포트에서 끝나지 않고 실제 제품 제조와 반복 구매로 연결되기 때문에 확장 가능한 수익 모델 설계가 가능합니다.</p></div>
     </div>
   </div>
 </section>
+
 <section class="cta-section" id="contact">
   <div class="container cta-inner">
-    <span class="section-tag">CONTACT</span>
-    <h2>정밀 헬스케어 사업을<br>별도 트랙으로 소개합니다</h2>
-    <p>투자자, 제조 파트너, 데이터/유전자 분석 파트너와의 협업을 고려해 사업 모델과 플랫폼 구조를 별도 페이지에서 명확히 전달하도록 구성했습니다.</p>
+    <span class="section-tag" data-i18n="cta-tag">CONTACT</span>
+    <h2 data-i18n="cta-title">정밀 헬스케어 사업을<br>별도 트랙으로 소개합니다</h2>
+    <p data-i18n="cta-desc">투자자, 제조 파트너, 데이터/유전자 분석 파트너와의 협업을 고려해 사업 모델과 플랫폼 구조를 별도 페이지에서 명확히 전달하도록 구성했습니다.</p>
     <div class="hero-actions" style="justify-content:center;">
-      <a href="mailto:contact@vpay.com" class="btn-primary">사업 문의하기</a>
-      <a href="index.html" class="btn-secondary">V Pay 메인 페이지</a>
+      <a href="mailto:contact@vpay.com" class="btn-primary" data-i18n="cta-btn1">사업 문의하기</a>
+      <a href="index.html" class="btn-secondary" data-i18n="cta-btn2">V Pay 메인 페이지</a>
     </div>
   </div>
 </section>
+
 <footer>
   <div class="footer-inner">
-    <p>© 2026 V Pay Healthcare. Precision healthcare venture by V Pay.</p>
-    <a href="index.html">핀테크 메인 페이지로 이동</a>
+    <p data-i18n="footer-copy">© 2026 V Pay Healthcare. Precision healthcare venture by V Pay.</p>
+    <a href="index.html" data-i18n="footer-link">핀테크 메인 페이지로 이동</a>
   </div>
 </footer>
+
+<script>
+const T = {
+  ko: {
+    'nav-fintech':'핀테크','nav-healthcare':'헬스케어','nav-contact':'문의하기',
+    'hero-eyebrow':'Precision Healthcare Venture',
+    'hero-title':'SNP 기반 <span>개인 맞춤형 영양제</span><br>제조 플랫폼',
+    'hero-desc':'V Pay Healthcare는 SNP(단일 염기 다형성) 분석을 출발점으로 개인의 유전적 특성과 생활 데이터를 통합 해석하고, 맞춤형 영양제 설계와 제조까지 연결하는 정밀 헬스케어 플랫폼을 준비하고 있습니다.',
+    'hero-btn1':'사업 모델 보기 →','hero-btn2':'핀테크 메인으로 돌아가기',
+    'panel-title':'PLATFORM FLOW',
+    'flow1-num':'01','flow1-desc':'유전자 데이터 수집 및 SNP 프로파일링',
+    'flow2-num':'02','flow2-desc':'라이프스타일·문진 데이터 결합 분석',
+    'flow3-num':'03','flow3-desc':'개인 맞춤 영양 포뮬러 설계',
+    'flow4-num':'04','flow4-desc':'제조·패키징·정기 공급 운영',
+    'biz-tag':'BUSINESS MODEL','biz-title':'데이터 해석부터 제조까지 하나의 흐름으로 설계합니다',
+    'biz-sub':'단순 추천이 아니라 개인 데이터를 실제 제품 설계와 공급 체계로 연결하는 구조가 핵심입니다. 사업 모델을 분석, 설계, 제조, 반복 관리의 4단계로 분리해 설명합니다.',
+    'feat1-title':'SNP 유전자 분석','feat1-desc':'영양소 대사 특성, 흡수 경향, 특정 건강 리스크와 연관될 수 있는 유전적 신호를 해석해 개인별 출발점을 정리합니다.',
+    'feat2-title':'정밀 건강 리포트','feat2-desc':'문진, 식습관, 수면, 활동량 등 라이프스타일 데이터를 결합해 현재 상태와 개선 우선순위를 직관적인 리포트로 제공합니다.',
+    'feat3-title':'맞춤형 포뮬러 설계','feat3-desc':'개인별 필요 성분과 함량을 설계해 복용 편의성과 지속 가능성을 고려한 맞춤형 영양 솔루션을 구성합니다.',
+    'feat4-title':'주문형 제조·공급','feat4-desc':'설계 결과를 제조 파트너 및 운영 시스템과 연결해 생산, 포장, 배송, 정기 구독까지 이어지는 운영 모델을 만듭니다.',
+    'op-tag':'OPERATING MODEL','op-title':'정밀 헬스케어 플랫폼 구조','op-sub':'플랫폼은 단발성 검사가 아니라 데이터를 지속적으로 업데이트하고 개인 맞춤 제안을 고도화하는 구조로 설계됩니다.',
+    'step1-num':'STEP 01','step1-title':'진단 및 데이터 확보','step1-desc':'유전자 분석 키트와 디지털 문진을 통해 개인 프로필을 생성하고 이후 상담 및 추천의 기준 데이터를 확보합니다.',
+    'step2-num':'STEP 02','step2-title':'해석 및 영양 설계','step2-desc':'분석 결과를 영양학적 관점에서 재해석해 필요한 성분 조합과 섭취 플랜을 설계합니다.',
+    'step3-num':'STEP 03','step3-title':'제조 및 반복 케어','step3-desc':'설계안을 제조와 연결하고, 이후 복용 피드백과 생활 데이터 변화에 따라 포뮬러를 재조정합니다.',
+    'adv-tag':'PLATFORM ADVANTAGE','adv-title':'데이터·운영·제조를 연결하는 확장형 구조','adv-sub':'사업의 경쟁력은 분석 결과만 보여주는 데서 끝나지 않고, 제품화와 재구매 구조까지 끌고 갈 수 있는 운영 체계에 있습니다.',
+    'adv-panel-title':'Healthcare Platform Thesis','adv-panel-desc':'개인의 유전자 및 생활 데이터를 기반으로 한 분석 엔진, 맞춤형 포뮬러 설계 로직, 제조 및 공급 운영을 하나의 고객 여정으로 통합합니다. 이 구조는 향후 건강기능식품 외 다양한 디지털 헬스케어 서비스로도 확장될 수 있습니다.',
+    'adv-l1-title':'Personalized recommendation engine','adv-l1-desc':'유전자·생활 데이터 기반으로 고객별 다른 설계 결과를 생성하는 핵심 레이어',
+    'adv-l2-title':'Manufacturing integration','adv-l2-desc':'설계 결과를 실제 제조 스펙으로 변환해 생산 및 재주문 흐름과 연동',
+    'adv-l3-title':'Subscription-ready operations','adv-l3-desc':'정기 복용, 리필, 설계 업데이트 등 반복 매출 구조에 적합한 운영 방식',
+    'adv-l4-title':'Future healthcare ecosystem','adv-l4-desc':'영양제 외 상담, 건강 리포트, 라이프스타일 코칭 등으로 이어질 수 있는 확장성',
+    'why-tag':'WHY NOW','why-title':'왜 지금 이 사업을 주목해야 할까요?','why-sub':'개인화 소비, 데이터 기반 건강관리, 주문형 제조 트렌드가 맞물리면서 정밀 영양 시장에 대한 기대가 커지고 있습니다.',
+    'why1-title':'개인화 수요 확대','why1-desc':'획일적인 건강기능식품보다 개인에게 맞는 성분 조합과 섭취 방식에 대한 니즈가 빠르게 증가하고 있습니다.',
+    'why2-title':'데이터 기반 설득력','why2-desc':'유전자와 생활 데이터를 함께 해석하면 추천의 근거를 더 명확하게 설명할 수 있어 고객 경험과 신뢰를 높일 수 있습니다.',
+    'why3-title':'제조 연계형 수익화','why3-desc':'분석 리포트에서 끝나지 않고 실제 제품 제조와 반복 구매로 연결되기 때문에 확장 가능한 수익 모델 설계가 가능합니다.',
+    'cta-tag':'CONTACT','cta-title':'정밀 헬스케어 사업을<br>별도 트랙으로 소개합니다','cta-desc':'투자자, 제조 파트너, 데이터/유전자 분석 파트너와의 협업을 고려해 사업 모델과 플랫폼 구조를 별도 페이지에서 명확히 전달하도록 구성했습니다.',
+    'cta-btn1':'사업 문의하기','cta-btn2':'V Pay 메인 페이지',
+    'footer-copy':'© 2026 V Pay Healthcare. Precision healthcare venture by V Pay.','footer-link':'핀테크 메인 페이지로 이동'
+  },
+  en: {
+    'nav-fintech':'Fintech','nav-healthcare':'Healthcare','nav-contact':'Contact',
+    'hero-eyebrow':'Precision Healthcare Venture',
+    'hero-title':'SNP-Based <span>Personalized Supplement</span><br>Manufacturing Platform',
+    'hero-desc':'V Pay Healthcare integrates SNP (Single Nucleotide Polymorphism) analysis with lifestyle data to design and manufacture personalized nutritional supplements — a precision healthcare platform built for the individual.',
+    'hero-btn1':'View Business Model →','hero-btn2':'Back to Fintech Main',
+    'panel-title':'PLATFORM FLOW',
+    'flow1-num':'01','flow1-desc':'Genetic data collection & SNP profiling',
+    'flow2-num':'02','flow2-desc':'Lifestyle & survey data integration',
+    'flow3-num':'03','flow3-desc':'Personalized nutrition formula design',
+    'flow4-num':'04','flow4-desc':'Manufacturing, packaging & subscription delivery',
+    'biz-tag':'BUSINESS MODEL','biz-title':'Designed as One Flow — from Data to Manufacturing',
+    'biz-sub':'The core is not just recommendations, but connecting personal data to actual product design and supply systems. We break the business model into 4 stages: analyze, design, manufacture, repeat.',
+    'feat1-title':'SNP Genetic Analysis','feat1-desc':'We interpret genetic signals related to nutrient metabolism, absorption tendencies, and potential health risks to establish each individual\'s baseline profile.',
+    'feat2-title':'Precision Health Report','feat2-desc':'By combining survey, dietary, sleep, and activity data with genetic results, we deliver an intuitive report on current status and priority improvements.',
+    'feat3-title':'Custom Formula Design','feat3-desc':'We design ingredient combinations and dosages tailored to each individual, creating personalized nutritional solutions that prioritize convenience and sustainability.',
+    'feat4-title':'On-demand Manufacturing','feat4-desc':'Design outputs are connected to manufacturing partners and operations systems — covering production, packaging, delivery, and subscription management.',
+    'op-tag':'OPERATING MODEL','op-title':'Precision Healthcare Platform Structure','op-sub':'The platform is designed not as a one-time test, but as a system that continuously updates data and refines personalized recommendations.',
+    'step1-num':'STEP 01','step1-title':'Diagnosis & Data Collection','step1-desc':'Genetic analysis kits and digital surveys create a personal profile that serves as the foundation for future consultations and recommendations.',
+    'step2-num':'STEP 02','step2-title':'Interpretation & Nutrition Design','step2-desc':'Analysis results are reinterpreted through a nutritional lens to design the necessary ingredient combinations and intake plans.',
+    'step3-num':'STEP 03','step3-title':'Manufacturing & Ongoing Care','step3-desc':'Designs are connected to manufacturing, and formulas are readjusted based on usage feedback and lifestyle data changes over time.',
+    'adv-tag':'PLATFORM ADVANTAGE','adv-title':'Scalable Architecture Connecting Data, Operations & Manufacturing','adv-sub':'The competitive edge lies not only in showing analysis results, but in the operational system that drives productization and repeat purchases.',
+    'adv-panel-title':'Healthcare Platform Thesis','adv-panel-desc':'An analysis engine based on genetic and lifestyle data, personalized formula design logic, and manufacturing & supply operations are integrated into a single customer journey. This structure can expand beyond supplements into various digital healthcare services.',
+    'adv-l1-title':'Personalized recommendation engine','adv-l1-desc':'Core layer that generates unique design outputs for each customer based on genetic and lifestyle data',
+    'adv-l2-title':'Manufacturing integration','adv-l2-desc':'Converts design outputs into manufacturing specs and connects to production and reorder workflows',
+    'adv-l3-title':'Subscription-ready operations','adv-l3-desc':'Operations model suited to recurring revenue through regular intake, refills, and formula updates',
+    'adv-l4-title':'Future healthcare ecosystem','adv-l4-desc':'Expandable to consultations, health reports, and lifestyle coaching beyond supplements',
+    'why-tag':'WHY NOW','why-title':'Why This Business, Why Now?','why-sub':'The convergence of personalized consumption, data-driven health management, and on-demand manufacturing is driving growing expectations for the precision nutrition market.',
+    'why1-title':'Growing Personalization Demand','why1-desc':'The need for personalized ingredient combinations and intake methods is rapidly increasing over standardized health supplements.',
+    'why2-title':'Data-Backed Credibility','why2-desc':'Interpreting genetic and lifestyle data together allows for clearer explanation of recommendation rationales, enhancing customer experience and trust.',
+    'why3-title':'Manufacturing-Linked Monetization','why3-desc':'Beyond analysis reports, the connection to actual product manufacturing and repeat purchases enables a scalable revenue model.',
+    'cta-tag':'CONTACT','cta-title':'Introducing Precision Healthcare<br>as a Separate Track','cta-desc':'Considering collaboration with investors, manufacturing partners, and data/genomic analysis partners, we\'ve structured this page to clearly convey the business model and platform architecture.',
+    'cta-btn1':'Business Inquiry','cta-btn2':'V Pay Main Page',
+    'footer-copy':'© 2026 V Pay Healthcare. Precision healthcare venture by V Pay.','footer-link':'Go to Fintech Main Page'
+  }
+};
+
+let currentLang = localStorage.getItem('vpay-lang') || 'ko';
+
+function applyLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('vpay-lang', lang);
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang][key] !== undefined) el.innerHTML = T[lang][key];
+  });
+  const btn = document.getElementById('langToggle');
+  const mBtn = document.getElementById('mobileLangBtn');
+  if (btn) btn.textContent = lang === 'ko' ? 'EN' : '한';
+  if (mBtn) mBtn.textContent = lang === 'ko' ? '🌐 English' : '🌐 한국어';
+}
+
+function toggleLang() {
+  applyLang(currentLang === 'ko' ? 'en' : 'ko');
+}
+
+applyLang(currentLang);
+
+// Nav scroll
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  nav.style.background = window.scrollY > 50 ? 'rgba(7,15,31,0.99)' : 'rgba(13,31,62,0.96)';
+});
+
+// Hamburger
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+mobileMenu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  });
+});
+</script>
 </body>
 </html>

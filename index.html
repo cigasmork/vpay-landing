@@ -42,15 +42,16 @@ nav {
 }
 .logo-text { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--white); letter-spacing: 0.04em; }
 .logo-text span { color: var(--accent-light); }
-.nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
+.nav-group { display: flex; align-items: center; gap: 12px; }
+.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; margin-right: 16px; }
 .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; letter-spacing: 0.02em; transition: color 0.2s; }
 .nav-links a:hover { color: var(--accent-light); }
 .nav-cta {
   background: var(--accent); color: var(--navy) !important;
   padding: 8px 22px; font-weight: 700 !important; transition: background 0.2s !important;
+  text-decoration: none;
 }
 .nav-cta:hover { background: var(--accent-light) !important; }
-.nav-right { display: flex; align-items: center; gap: 12px; }
 .lang-toggle {
   background: transparent; border: 1px solid rgba(255,255,255,0.3);
   color: rgba(255,255,255,0.75); padding: 6px 14px;
@@ -260,8 +261,8 @@ footer { background: #070F1F; padding: 64px 0 32px; }
 @media (max-width: 768px) {
   nav { padding: 0 24px; }
   .nav-links { display: none; }
+  .nav-cta { display: none; }
   .hamburger { display: flex; }
-  .lang-toggle { display: none; }
   .hero-content { grid-template-columns: 1fr; gap: 40px; padding: 40px 24px; }
   .hero-title { font-size: 38px; }
   .container { padding: 0 24px; }
@@ -290,13 +291,13 @@ footer { background: #070F1F; padding: 64px 0 32px; }
     <div class="logo-mark">V</div>
     <span class="logo-text">V <span>Pay</span></span>
   </a>
-  <ul class="nav-links">
-    <li><a href="#" data-i18n="nav-fintech">핀테크</a></li>
-    <li><a href="healthcare.html" data-i18n="nav-healthcare">헬스케어</a></li>
-  </ul>
-  <div class="nav-right">
-    <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
+  <div class="nav-group">
+    <ul class="nav-links">
+      <li><a href="#" data-i18n="nav-fintech">핀테크</a></li>
+      <li><a href="healthcare.html" data-i18n="nav-healthcare">헬스케어</a></li>
+    </ul>
     <a href="#contact" class="nav-cta" data-i18n="nav-contact">문의하기</a>
+    <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
     <button class="hamburger" id="hamburger" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
   </div>
 </nav>
